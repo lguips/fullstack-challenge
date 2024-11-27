@@ -47,14 +47,3 @@ model Desenvolvedor {
   @@map("desenvolvedores")
   nivel_id Int
 }
-
-// "id": 1,
-//   "nome": "Nome do Desenvolvedor",
-//   "sexo": "M",
-//   "data_nascimento": "1990-01-01",
-//   "idade": 31,
-//   "hobby": "Programação",
-//   "nivel": {
-//     "id": 1,
-//     "nivel": "Nome do Nível"
-//   }
