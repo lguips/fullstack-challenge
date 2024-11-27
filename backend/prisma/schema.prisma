@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// criar uma migration npm run prisma migrate dev
+// model User {
+//   id String @id @default(uuid())
+//   name String
+//   email String
+//   password String
+//   created_at DateTime? @default(now())
+//   updated_at DateTime? @default(now())
+
+//   @@map("users")
+// }
+
+model Nivel {
+  id Int @id @default(autoincrement())
+  nivel String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("niveis")
+  desenvolvedores Desenvolvedor[]
+}
+
+model Desenvolvedor {
+  id Int @id @default(autoincrement())
+  nome String
+  sexo String
+  data_nascimento DateTime
+  idade Int
+  hobby String
+  nivel Nivel @relation(fields: [nivel_id], references: [id], onDelete: Restrict)
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("desenvolvedores")
+  nivel_id Int
+}
+
+// "id": 1,
+//   "nome": "Nome do Desenvolvedor",
+//   "sexo": "M",
+//   "data_nascimento": "1990-01-01",
+//   "idade": 31,
+//   "hobby": "Programação",
+//   "nivel": {
+//     "id": 1,
+//     "nivel": "Nome do Nível"
+//   }
